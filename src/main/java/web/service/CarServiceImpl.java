@@ -12,15 +12,13 @@ import java.util.List;
 public class CarServiceImpl implements CarService {
 
     private UserDao userDao;
-    private List<Car> cars;
+    private  List<Car> carList;
 
-    {
-        cars = userDao.createNewList();
-    }
 
     @Autowired
-    public void setUserDao(UserDao userDao) {
+    public CarServiceImpl(UserDao userDao) {
         this.userDao = userDao;
+        carList = userDao.createNewList();
     }
 
     @Override
@@ -28,8 +26,7 @@ public class CarServiceImpl implements CarService {
         if ((number == null) || (number >= 6)) {
             number = 5;
         }
-        return cars.subList(0, number);
-
+        return carList.subList(0, number);
     }
 
 
