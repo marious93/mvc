@@ -21,7 +21,7 @@ public class CarController {
     public String getCarList(ModelMap model,
                              @RequestParam(value = "count", required = false) Integer count) {
 
-        model.addAttribute("cars", carService.getList(carService.create(), count));
+        model.addAttribute("cars", carService.getCarList(count));
         return "Cars";
     }
 

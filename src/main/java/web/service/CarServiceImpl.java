@@ -5,12 +5,18 @@ import org.springframework.stereotype.Service;
 import web.dao.UserDao;
 import web.model.Car;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class CarServiceImpl implements CarService {
 
     private UserDao userDao;
+    private List<Car> cars;
+
+    {
+        cars = userDao.createNewList();
+    }
 
     @Autowired
     public void setUserDao(UserDao userDao) {
@@ -18,13 +24,13 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<Car> getList(List<Car> carList, Integer number) {
-        return userDao.getList(carList, number);
+    public List<Car> getCarList(Integer number) {
+        if ((number == null) || (number >= 6)) {
+            number = 5;
+        }
+        return cars.subList(0, number);
+
     }
 
-    @Override
-    public List<Car> create() {
-        return userDao.create();
-    }
 
 }
