@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 @Setter
 @Component
 public class Car {
+    private int id;
     private String name;
     private int price;
     private double speed;
@@ -15,7 +16,8 @@ public class Car {
     public Car() {
     }
 
-    public Car(String name, int price, double speed) {
+    public Car(int id, String name, int price, double speed) {
+        this.id = id;
         this.name = name;
         this.price = price;
         this.speed = speed;
