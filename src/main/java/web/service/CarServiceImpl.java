@@ -12,22 +12,21 @@ import java.util.List;
 public class CarServiceImpl implements CarService {
 
     private UserDao userDao;
-    private  List<Car> carList;
+    private List<Car> carList;
 
 
     @Autowired
     public CarServiceImpl(UserDao userDao) {
         this.userDao = userDao;
-        carList = userDao.createNewList();
     }
 
     @Override
     public List<Car> getCarList(Integer number) {
+        carList = userDao.createNewList();
         if ((number == null) || (number >= 6)) {
             number = 5;
         }
         return carList.subList(0, number);
     }
-
 
 }
