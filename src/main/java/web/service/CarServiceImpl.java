@@ -21,8 +21,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<Car> getCarList(Integer number) {
         carList = userDao.createNewList();
-        Stream<Car> list = carList.stream();
-        return list.limit(number).toList();
+        return carList.stream().limit(number).toList();
     }
 
 }
