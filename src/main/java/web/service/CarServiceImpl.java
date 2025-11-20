@@ -7,26 +7,24 @@ import web.model.Car;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class CarServiceImpl implements CarService {
 
-    private UserDao userDao;
+    private final UserDao userDao;
     private List<Car> carList;
 
 
-    @Autowired
     public CarServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
 
     @Override
     public List<Car> getCarList(Integer number) {
-        carList = userDao.createNewList();
-        if ((number == null) || (number >= 6)) {
-            number = 5;
-        }
-        return carList.subList(0, number);
+        Stream<Car> list = userDao.createNewList().stream();
+        return list.limit(number).toList();
     }
 
 }
